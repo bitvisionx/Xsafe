@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CryptoTracker</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <h1>CryptoTracker</h1>
+
+  <div class="section">
+    <h2>Blox</h2>
+    <div id="blox-entries"></div>
+    <form id="blox-form">
+      <select id="blox-coin" required></select>
+      <input type="number" id="blox-amount" step="any" placeholder="Hoeveelheid munt" required />
+      <input type="number" id="blox-price-each" step="any" placeholder="Prijs van 1 munt bij aankoop (€)" required />
+      <button type="submit">Toevoegen aan Blox</button>
+    </form>
+    <div id="blox-summary"></div>
+  </div>
+
+  <div class="section">
+    <h2>Bitvavo</h2>
+    <div id="bitvavo-entries"></div>
+    <form id="bitvavo-form">
+      <select id="bitvavo-coin" required></select>
+      <input type="number" id="bitvavo-amount" step="any" placeholder="Hoeveelheid munt" required />
+      <input type="number" id="bitvavo-price-each" step="any" placeholder="Prijs van 1 munt bij aankoop (€)" required />
+      <button type="submit">Toevoegen aan Bitvavo</button>
+    </form>
+    <div id="bitvavo-summary"></div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

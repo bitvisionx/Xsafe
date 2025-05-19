@@ -53,6 +53,13 @@ function saveData(data) {
   localStorage.setItem("cryptoData", JSON.stringify(data));
 }
 
+function deleteEntry(section, index) {
+  const data = loadData();
+  data[section].splice(index, 1);
+  saveData(data);
+  render();
+}
+
 function render() {
   const data = loadData();
   ["blox", "bitvavo"].forEach(section => {
@@ -62,7 +69,7 @@ function render() {
     let totalCurrent = 0;
     let totalPaid = 0;
 
-    (data[section] || []).forEach(entry => {
+    (data[section] || []).forEach((entry, index) => {
       const currentPrice = livePrices[entry.coin];
       const currentValue = entry.amount * currentPrice;
       const paid = entry.amount * entry.priceEach;
@@ -79,7 +86,8 @@ function render() {
         Prijs per munt bij aankoop: €${entry.priceEach}<br/>
         Betaald totaal: €${paid.toFixed(2)}<br/>
         Huidige waarde: €${currentValue.toFixed(2)}<br/>
-        Winst/verlies: <strong style="color:${diff >= 0 ? 'lime' : 'red'}">€${diff.toFixed(2)}</strong>
+        Winst/verlies: <strong style="color:${diff >= 0 ? 'lime' : 'red'}">€${diff.toFixed(2)}</strong><br/>
+        <button onclick="deleteEntry('${section}', ${index})">Verwijderen</button>
       `;
       container.appendChild(div);
     });
@@ -123,5 +131,8 @@ async function init() {
   handleForm("bitvavo");
   render();
 }
+
+// Globaal beschikbaar maken zodat de knop werkt
+window.deleteEntry = deleteEntry;
 
 init();
